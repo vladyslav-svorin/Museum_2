@@ -29,11 +29,13 @@ html {
   font-size: $fontSize;
   font-weight: 400;
   color: $fontColor;
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   background: $c-gray;
+  scroll-behavior: smooth;
 }
 
 img {
@@ -168,6 +170,18 @@ img {
 
 // #region menu
 
+html:has(.menu:target) {
+  overflow: hidden;
+
+  body {
+    background-color: $c-dark-green;
+  }
+
+  section {
+    display: none;
+  }
+}
+
 .menu {
   position: fixed;
   top: 0;
@@ -179,6 +193,7 @@ img {
   pointer-events: none;
   background-image: url('../images/main-boy.png');
   color: $c-gray;
+  z-index: 1001;
 
   @media (max-width: 768px) {
     height: 1092px;
@@ -573,6 +588,8 @@ img {
     height: 356px;
     margin-bottom: 20px;
 
+    @include hover(transform, scale(1.02));
+
     @include on-tablet {
       height: 420px;
       margin-bottom: 30px;
@@ -734,6 +751,11 @@ img {
     flex-flow: row wrap;
     justify-content: space-between;
     row-gap: 70px;
+    margin-bottom: 100px;
+  }
+
+  @include on-desktop {
+    margin-bottom: 110px;
   }
 }
 
@@ -743,6 +765,7 @@ img {
 
 .visit {
   background-color: $c-dark-green;
+  margin-bottom: 90px;
 
   &__content {
     padding-block: 50px;
@@ -754,7 +777,7 @@ img {
     @include on-desktop {
       padding-left: 555px;
       padding-block: 205px;
-      background-image: url("../images/secwoman.png");
+      background-image: url('../images/secwoman.png');
       background-repeat: no-repeat;
     }
   }
@@ -766,12 +789,12 @@ img {
     font-size: 38px;
     line-height: 100%;
     margin-bottom: 20px;
-    
+
     @include on-tablet {
       font-size: 62px;
     }
 
-    @include on-tablet {
+    @include on-desktop {
       font-size: 80px;
     }
   }
@@ -784,6 +807,421 @@ img {
 
     @include on-tablet {
       margin-bottom: 60px;
+    }
+  }
+
+  @include on-tablet {
+    margin-bottom: 120px;
+  }
+
+  @include on-desktop {
+    margin-bottom: 110px;
+  }
+}
+
+// #endregion
+
+// #region news
+
+.news {
+  margin-bottom: 120px;
+
+  &__title {
+    font-family: $fontPlayfairD;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 125%;
+    margin-bottom: 60px;
+    order: 1;
+
+    @include on-tablet {
+      font-size: 40px;
+      margin-bottom: 0;
+    }
+
+    @include on-desktop {
+      font-size: 48px;
+    }
+  }
+
+  &__content {
+    display: grid;
+    row-gap: 50px;
+    margin-bottom: 30px;
+    order: 2;
+
+    .article-block__description {
+      margin-bottom: 0;
+    }
+
+    .article-block__date {
+      color: $fontColor;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .article-block__title {
+      font-size: 20px;
+    }
+
+    .article-block__image {
+      height: 281px;
+
+      img {
+        object-fit: cover;
+        object-position: center;
+      }
+
+      @include on-tablet {
+        height: 330px;
+      }
+
+      @include on-desktop {
+        height: 370px;
+      }
+    }
+
+    @include on-tablet {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 30px;
+    }
+  }
+
+  &__button {
+    padding-left: 84px;
+    order: 3;
+
+    @include on-tablet {
+      order: 1;
+      padding-left: 49px;
+    }
+
+    @include on-desktop {
+      padding-left: 79px;
+    }
+  }
+
+  .empty-button::after {
+    left: 176px;
+
+    @include on-tablet {
+      left: 141px;
+    }
+
+    @include on-desktop {
+      left: 171px;
+    }
+  }
+
+  @include on-tablet {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    row-gap: 75px;
+    margin-bottom: 160px;
+  }
+
+  @include on-desktop {
+    row-gap: 55px;
+    margin-bottom: 200px;
+  }
+}
+
+// #endregion
+
+// #region subscription
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid yellowgreen;
+  -webkit-text-fill-color: green;
+  -webkit-box-shadow: 0 0 0 1000px yellowgreen inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.subscription {
+  margin-bottom: 80px;
+
+  &__title {
+    font-family: $fontPlayfairD;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 125%;
+    margin-bottom: 20px;
+
+    @include on-tablet {
+      font-size: 40px;
+    }
+
+    @include on-desktop {
+      max-width: 400px;
+      margin-bottom: 50px;
+    }
+  }
+
+  &__text {
+    grid-column: 2;
+    line-height: 150%;
+    margin-bottom: 50px;
+
+    @include on-tablet {
+      width: 570px;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: 28px;
+    margin-bottom: 30px;
+    border: none;
+    background-color: $c-gray;
+    border-bottom: 1px solid $fontColor;
+    transition: border-bottom, 0.3s;
+
+    &:hover {
+      border-bottom-color: #cd4d31;
+    }
+
+    &:focus {
+      outline: none;
+      color: #cd4d31;
+      border-bottom-color: #cd4d31;
+    }
+
+    &::placeholder {
+      font-family: $fontRaleway;
+      line-height: 150%;
+      color: $fontColor;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    &:hover::placeholder {
+      color: #cd4d31;
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+      transition: none;
+    }
+
+    @include on-tablet {
+      width: 450px;
+    }
+
+    @include on-desktop {
+      width: 470px;
+      margin-bottom: 40px;
+    }
+  }
+
+  @include on-tablet {
+    margin-bottom: 128px;
+  }
+
+  @include on-desktop {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 200px;
+  }
+}
+
+// #endregion
+
+// #region footer
+
+.footer {
+  background-color: $c-dark-green;
+  color: $c-gray;
+
+  &__content {
+    padding-block: 35px;
+
+    @include on-tablet {
+      padding-top: 50px;
+      padding-bottom: 30px;
+    }
+  }
+
+  &__main {
+    margin-bottom: 60px;
+
+    @include on-tablet {
+      display: flex;
+      gap: 60px;
+    }
+
+    @include on-desktop {
+      gap: 200px;
+    }
+  }
+
+  &__contacts {
+    margin-bottom: 50px;
+
+    @include on-tablet {
+      margin-bottom: 0;
+    }
+  }
+
+  &__schedule {
+    margin-bottom: 50px;
+
+    @include on-tablet {
+      margin-bottom: 0;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    gap: 22px;
+    align-items: flex-end;
+
+    @include on-desktop {
+      gap: 102px;
+    }
+  }
+}
+
+.contacts-footer {
+  &__title {
+    font-family: $fontPlayfairD;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 150%;
+    margin-bottom: 10px;
+
+    @include on-tablet {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__text {
+    line-height: 150%;
+    margin-bottom: 30px;
+
+    @include on-tablet {
+      margin-bottom: 50px;
+    }
+  }
+
+  &__email {
+    color: $c-gray;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+.icons-footer {
+  &_icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+
+    @include hover(transform, scale(1.2));
+  }
+
+  &__facebook {
+    background-image: url('../images/facebook.svg');
+  }
+
+  &__twitter {
+    background-image: url('../images/twitter.svg');
+  }
+
+  &__telegram {
+    background-image: url('../images/telegram.svg');
+  }
+
+  &__instagram {
+    background-image: url('../images/instagram.svg');
+  }
+}
+
+.schedule-footer {
+  &__title {
+    font-family: $fontPlayfairD;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 150%;
+    margin-bottom: 10px;
+
+    @include on-tablet {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__text {
+    line-height: 150%;
+  }
+}
+
+.nav-footer {
+  &__title {
+    font-family: $fontPlayfairD;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 150%;
+    margin-bottom: 10px;
+
+    @include on-tablet {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__link {
+    color: $c-gray;
+    line-height: 150%;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.bottom-footer {
+  &__years {
+    font-size: 14px;
+    line-height: 140%;
+  }
+
+  &__privacy {
+    font-size: 14px;
+    line-height: 140%;
+  }
+
+  &__arrow {
+    display: block;
+    height: 30px;
+    width: 30px;
+    background-image: url('../images/scroll-up.svg');
+    background-repeat: no-repeat;
+
+    @include on-tablet {
+      flex: 1 1 auto;
+      background-position: right;
     }
   }
 }
